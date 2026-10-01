@@ -1,0 +1,200 @@
+﻿{% extends "core/base.html" %}
+
+{% block title %}Services - Python Freelance{% endblock %}
+
+{% block content %}
+
+<section class="services-page">
+
+    <div class="services-page-header">
+
+        <span class="section-badge">🛠️ Nos services</span>
+
+        <h1>
+            Des solutions Python
+            <span>adaptées à vos besoins.</span>
+        </h1>
+
+        <p>
+            Nous proposons des solutions modernes, fiables et personnalisées
+            pour développer, automatiser et améliorer vos projets.
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <div class="service-icon">🐍</div>
+
+            <h2>Développement Python</h2>
+
+            <p>
+                Création de scripts et d'applications Python
+                adaptés aux besoins de votre projet.
+            </p>
+
+            <ul>
+                <li>Scripts personnalisés</li>
+                <li>Applications Python</li>
+                <li>Traitement de données</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+
+        <article class="service-card featured">
+
+            <div class="popular-badge">⭐ Service principal</div>
+
+            <div class="service-icon">🌐</div>
+
+            <h2>Développement Web</h2>
+
+            <p>
+                Création de sites et applications web modernes
+                avec Python et Django.
+            </p>
+
+            <ul>
+                <li>Sites web Django</li>
+                <li>Interfaces modernes</li>
+                <li>Bases de données</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <div class="service-icon">⚙️</div>
+
+            <h2>Automatisation</h2>
+
+            <p>
+                Automatisez les tâches répétitives afin de gagner
+                du temps et d'améliorer votre productivité.
+            </p>
+
+            <ul>
+                <li>Automatisation des tâches</li>
+                <li>Traitement de fichiers</li>
+                <li>Génération de rapports</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <div class="service-icon">📊</div>
+
+            <h2>Traitement de données</h2>
+
+            <p>
+                Analyse, organisation et traitement de données
+                avec des outils Python adaptés.
+            </p>
+
+            <ul>
+                <li>Nettoyage des données</li>
+                <li>Analyse de données</li>
+                <li>Rapports automatisés</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <div class="service-icon">🗄️</div>
+
+            <h2>Bases de données</h2>
+
+            <p>
+                Mise en place et gestion de bases de données
+                pour vos applications web et Python.
+            </p>
+
+            <ul>
+                <li>Conception de bases</li>
+                <li>Gestion des données</li>
+                <li>Intégration avec Django</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <div class="service-icon">🔧</div>
+
+            <h2>Solutions personnalisées</h2>
+
+            <p>
+                Une solution spécifique à votre besoin ?
+                Nous pouvons concevoir un projet entièrement personnalisé.
+            </p>
+
+            <ul>
+                <li>Analyse de vos besoins</li>
+                <li>Solution sur mesure</li>
+                <li>Accompagnement du projet</li>
+            </ul>
+
+            <a href="{% url 'contact' %}" class="service-link">
+                Demander un devis →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="services-cta">
+
+    <div class="services-cta-content">
+
+        <span class="section-badge">🚀 Votre projet mérite une solution adaptée</span>
+
+        <h2>Vous avez un projet en tête ?</h2>
+
+        <p>
+            Expliquez-nous votre idée et nous vous proposerons
+            une solution adaptée à vos besoins.
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn primary">
+            Démarrer un projet →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

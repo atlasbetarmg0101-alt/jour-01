@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تم تأكيد الطلب | متجرنا</title>
+
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="container header-content">
+
+        <h1>🛒 متجرنا</h1>
+
+        <a href="{% url 'cart' %}" class="cart-link">
+            🛍️ السلة
+            <span class="cart-count">
+                {{ cart_count }}
+            </span>
+        </a>
+
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="order-success">
+
+        <div class="success-icon">
+            ✅
+        </div>
+
+        <h2>
+            تم تأكيد طلبك بنجاح!
+        </h2>
+
+        <p>
+            شكرًا لك {{ order.customer_name }}.
+        </p>
+
+        <p>
+            رقم الطلب:
+            <strong>
+                #{{ order.id }}
+            </strong>
+        </p>
+
+        <p>
+            المجموع:
+            <strong>
+                {{ order.total }} درهم
+            </strong>
+        </p>
+
+        <p>
+            سنتواصل معك على رقم الهاتف الذي أدخلته لتأكيد الطلب.
+        </p>
+
+        <a
+            href="{% url 'product_list' %}"
+            class="continue-shopping"
+        >
+            🛍️ العودة إلى المتجر
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+</html>

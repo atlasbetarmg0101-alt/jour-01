@@ -1,0 +1,151 @@
+﻿{% extends "core/base.html" %}
+
+{% block title %}Projets - Python Freelance{% endblock %}
+
+{% block content %}
+
+<section class="projects-page">
+
+    <div class="projects-header">
+        <span class="section-badge">💼 Notre portfolio</span>
+
+        <h1>
+            Quelques projets
+            <span>réalisés avec Python.</span>
+        </h1>
+
+        <p>
+            Découvrez quelques exemples de solutions que nous pouvons
+            créer pour répondre à différents besoins professionnels.
+        </p>
+    </div>
+
+    <div class="projects-grid">
+
+        <article class="project-card">
+            <div class="project-image">🛒</div>
+            <div class="project-content">
+                <span class="project-category">🌐 Développement Web</span>
+                <h2>Boutique en ligne</h2>
+                <p>
+                    Une plateforme e-commerce moderne permettant de présenter
+                    des produits et de gérer les commandes.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Django</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-image">⚙️</div>
+            <div class="project-content">
+                <span class="project-category">🤖 Automatisation</span>
+                <h2>Automatisation de tâches</h2>
+                <p>
+                    Des scripts Python permettant d'automatiser les tâches
+                    répétitives et de gagner du temps.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Automation</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-image">📊</div>
+            <div class="project-content">
+                <span class="project-category">📈 Data</span>
+                <h2>Analyse de données</h2>
+                <p>
+                    Traitement et analyse de données avec génération
+                    de rapports simples et compréhensibles.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Data</span>
+                    <span>Reports</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-image">📋</div>
+            <div class="project-content">
+                <span class="project-category">💻 Application</span>
+                <h2>Application de gestion</h2>
+                <p>
+                    Une application web permettant de gérer des informations
+                    et de centraliser les données d'une activité.
+                </p>
+                <div class="project-tech">
+                    <span>Django</span>
+                    <span>SQLite</span>
+                    <span>HTML</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-image">📁</div>
+            <div class="project-content">
+                <span class="project-category">🐍 Python</span>
+                <h2>Gestion de fichiers</h2>
+                <p>
+                    Solution Python pour organiser, traiter et automatiser
+                    la gestion de fichiers.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Automation</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card">
+            <div class="project-image">🔐</div>
+            <div class="project-content">
+                <span class="project-category">🛠️ Solution sur mesure</span>
+                <h2>Application personnalisée</h2>
+                <p>
+                    Une solution développée spécialement selon les besoins
+                    et les objectifs du client.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Django</span>
+                    <span>SQLite</span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<section class="projects-cta">
+
+    <div class="projects-cta-content">
+
+        <span class="section-badge">🚀 Votre projet peut être le prochain</span>
+
+        <h2>Vous avez une idée ?</h2>
+
+        <p>
+            Parlons de votre projet et construisons ensemble
+            une solution adaptée à vos besoins.
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn primary">
+            Démarrer un projet →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

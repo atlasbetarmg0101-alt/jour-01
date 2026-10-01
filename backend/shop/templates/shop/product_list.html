@@ -1,0 +1,318 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>متجرنا</title>
+
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="container header-content">
+
+        <h1>🛒 متجرنا</h1>
+
+        <a href="{% url 'cart' %}" class="cart-link">
+            🛍️ السلة
+            <span class="cart-count">
+                {{ cart_count }}
+            </span>
+        </a>
+
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- القسم الترحيبي -->
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                🛍️ مرحبًا بك في متجرنا
+            </span>
+
+            <h2>
+                كل ما تحتاجه في مكان واحد
+            </h2>
+
+            <p>
+                اكتشف منتجاتنا واختر ما يناسبك بسهولة وسرعة.
+            </p>
+
+            <a href="#products" class="hero-button">
+                🛒 تصفح المنتجات
+            </a>
+
+        </div>
+
+    </section>
+     <!-- التصنيفات -->
+<nav class="category-nav">
+    <a href="{% url 'product_list' %}"
+       class="{% if not selected_category %}active{% endif %}">
+        🏠 الكل
+    </a>
+
+    {% for category in categories %}
+    <a href="{% url 'category_products' category.id %}">
+        {{ category.name }}
+        <span class="category-count">
+            ({{ category.product_count }})
+        </span>
+    </a>
+{% endfor %}
+    <!-- البحث -->
+    <form method="GET" class="search-form">
+        
+       <input
+           type="text"
+           name="q"
+           placeholder="ابحث عن منتج..."
+           value="{{ query }}"
+       >
+       
+       {% if selected_category %}
+           <input
+               type="hidden"
+               name="category"
+               value="{{ selected_category }}"
+           >
+       {% endif %}
+
+       <button type="submit">
+           🔎 بحث
+       </button>
+
+    </form>
+    {% if query or selected_category %}
+        <div class="clear-filters">
+            <a href="{% url 'product_list' %}">
+               ✖️ مسح البحث والتصنيف
+            </a>
+        </div>
+    {% endif %}
+
+    <!-- المنتجات -->
+    <div class="products" id="products">
+
+        {% for product in products %}
+
+            <article class="product-card">
+
+
+                <!-- معرض الصور -->
+                <div class="product-gallery">
+
+
+                    <!-- الصورة الرئيسية -->
+                    {% if product.image %}
+
+                        <div class="gallery-main">
+
+                            <a href="{% url 'product_detail' product.id %}">
+
+                                <img
+                                    id="main-image-{{ product.id }}"
+                                    src="{{ product.image.url }}"
+                                    alt="{{ product.name }}"
+                                >
+
+                            </a>
+
+                        </div>
+
+
+                    {% elif product.images.all %}
+
+                        {% for gallery_image in product.images.all %}
+
+                            {% if forloop.first %}
+
+                                <div class="gallery-main">
+
+                                    <a href="{% url 'product_detail' product.id %}">
+
+                                        <img
+                                            id="main-image-{{ product.id }}"
+                                            src="{{ gallery_image.image.url }}"
+                                            alt="{{ product.name }}"
+                                        >
+
+                                    </a>
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    <!-- الصور المصغرة -->
+                    <div class="gallery-thumbnails">
+
+
+                        <!-- صورة المنتج الرئيسية -->
+                        {% if product.image %}
+
+                            <button
+                                type="button"
+                                class="gallery-thumbnail active"
+                                onclick="changeMainImage(
+                                    {{ product.id }},
+                                    '{{ product.image.url }}',
+                                    '{{ product.name }}'
+                                )"
+                            >
+
+                                <img
+                                    src="{{ product.image.url }}"
+                                    alt="{{ product.name }}"
+                                >
+
+                            </button>
+
+                        {% endif %}
+
+
+                        <!-- صور المعرض الإضافية -->
+                        {% for gallery_image in product.images.all %}
+
+                            <button
+                                type="button"
+                                class="gallery-thumbnail"
+                                onclick="changeMainImage(
+                                    {{ product.id }},
+                                    '{{ gallery_image.image.url }}',
+                                    '{{ product.name }}'
+                                )"
+                            >
+
+                                <img
+                                    src="{{ gallery_image.image.url }}"
+                                    alt="{{ product.name }}"
+                                >
+
+                            </button>
+
+                        {% endfor %}
+
+
+                    </div>
+
+                </div>
+
+                {% if product.category %}
+                    <span class="product-category">
+                       🏷️ {{ product.category.name }}
+                    </span>
+                {% endif %}
+                <!-- اسم المنتج -->
+                <h2>
+
+                    <a href="{% url 'product_detail' product.id %}">
+                        {{ product.name }}
+                    </a>
+
+                </h2>
+
+
+                <!-- الوصف -->
+                <p class="description">
+                    {{ product.description }}
+                </p>
+
+
+                <!-- السعر -->
+                <p class="price">
+                    {{ product.price }} درهم
+                </p>
+
+
+                <!-- حالة المنتج -->
+                {% if product.available %}
+
+                    <p class="available">
+                        ✅ متوفر
+                    </p>
+
+                {% else %}
+
+                    <p class="unavailable">
+                        ❌ غير متوفر
+                    </p>
+
+                {% endif %}
+
+
+            </article>
+
+
+        {% empty %}
+
+             {% if query and selected_category %}
+                 <p>
+                    🔍 لم نجد منتجات مطابقة لبحثك داخل هذا التصنيف.
+                </p>
+
+            {% elif query %}
+                 <p>
+                    🔍 لم نجد منتجات مطابقة لبحثك.
+                </p>
+
+            {% elif selected_category %}
+                 <p>
+                    📦 لا توجد منتجات في هذا التصنيف حاليًا.
+                </p>
+
+            {% else %}
+                 <p>
+                   📦 لا توجد منتجات حاليًا.
+                </p>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+    </div>
+
+</main>
+
+
+<!-- JavaScript -->
+<script>
+
+    function changeMainImage(productId, imageUrl, productName) {
+
+        const mainImage = document.getElementById(
+            "main-image-" + productId
+        );
+
+        if (mainImage) {
+
+            mainImage.src = imageUrl;
+
+            mainImage.alt = productName;
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+</html>

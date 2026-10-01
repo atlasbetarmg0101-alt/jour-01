@@ -1,0 +1,40 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Python Freelance{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'core/favicon.svg' %}">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <h2>🐍 Python Freelance</h2>
+
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Accueil</a>
+            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'projects' %}">Projets</a>
+            <a href="{% url 'about' %}">À propos</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>© 2026 Python Freelance — Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إتمام الطلب | متجرنا</title>
+
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="container header-content">
+
+        <h1>🛒 متجرنا</h1>
+
+        <a href="{% url 'cart' %}" class="cart-link">
+            🛍️ السلة
+            <span class="cart-count">
+                {{ cart_count }}
+            </span>
+        </a>
+
+    </div>
+</header>
+
+<main class="container">
+
+    <h2 class="cart-title">
+        📦 إتمام الطلب
+    </h2>
+
+    {% if error %}
+
+        <div class="checkout-error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    <div class="checkout-layout">
+
+        <section class="checkout-form">
+
+            <h3>معلومات الزبون</h3>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="customer_name">
+                        الاسم الكامل
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer_name"
+                        name="customer_name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        رقم الهاتف
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="city">
+                        المدينة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="address">
+                        العنوان
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="checkout-submit"
+                >
+                    ✅ تأكيد الطلب
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section class="checkout-summary">
+
+            <h3>ملخص الطلب</h3>
+
+            {% for item in cart_items %}
+
+                <div class="checkout-item">
+
+                    <div>
+                        <strong>
+                            {{ item.product.name }}
+                        </strong>
+
+                        <p>
+                            الكمية: {{ item.quantity }}
+                        </p>
+                    </div>
+
+                    <strong>
+                        {{ item.item_total }} درهم
+                    </strong>
+
+                </div>
+
+            {% endfor %}
+
+            <div class="checkout-total">
+
+                <span>
+                    المجموع النهائي
+                </span>
+
+                <strong>
+                    {{ total }} درهم
+                </strong>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+</body>
+</html>

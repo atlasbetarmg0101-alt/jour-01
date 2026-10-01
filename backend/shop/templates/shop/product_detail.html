@@ -1,0 +1,293 @@
+```html
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | متجرنا</title>
+
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+
+</head>
+
+<body>
+
+<header>
+    <div class="container header-content">
+
+        <h1>🛒 متجرنا</h1>
+
+        <a href="{% url 'cart' %}" class="cart-link">
+            🛍️ السلة
+            <span class="cart-count">
+                {{ cart_count }}
+            </span>
+        </a>
+
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- العودة إلى المنتجات -->
+
+    <a href="{% url 'product_list' %}">
+        ← العودة إلى المنتجات
+    </a>
+
+
+    <article class="product-detail">
+
+
+        <!-- ============================= -->
+        <!-- معرض الصور -->
+        <!-- ============================= -->
+
+        <div class="product-gallery">
+
+
+            {% if product.image %}
+
+                <div
+                    class="gallery-main"
+                    id="zoom-container"
+                >
+
+                    <img
+                        id="detail-main-image"
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                    >
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- الصور المصغرة -->
+
+            <div class="gallery-thumbnails">
+
+                {% if product.image %}
+
+                    <button
+                        type="button"
+                        class="gallery-thumbnail active"
+                        onclick="changeDetailImage('{{ product.image.url }}')"
+                    >
+
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                        >
+
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- معلومات المنتج -->
+        <!-- ============================= -->
+
+        <div class="product-info">
+
+
+            <h2>
+
+                {{ product.name }}
+
+            </h2>
+
+
+            <p class="description">
+
+                {{ product.description }}
+
+            </p>
+
+
+            <p class="price">
+
+                {{ product.price }} درهم
+
+            </p>
+
+
+            {% if product.available %}
+
+
+                <p class="available">
+
+                    ✅ متوفر
+
+                </p>
+
+
+                <!-- إضافة إلى السلة -->
+
+                <form
+                    method="POST"
+                    action="{% url 'add_to_cart' product.id %}"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="add-to-cart-btn"
+                    >
+
+                        🛒 أضف إلى السلة
+
+                    </button>
+
+                </form>
+
+
+            {% else %}
+
+
+                <p class="unavailable">
+
+                    ❌ غير متوفر
+
+                </p>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </article>
+
+
+</main>
+
+
+<script>
+
+/* ================================= */
+/* تغيير الصورة الرئيسية */
+/* ================================= */
+
+function changeDetailImage(imageUrl) {
+
+    const mainImage =
+        document.getElementById(
+            "detail-main-image"
+        );
+
+
+    if (mainImage) {
+
+        mainImage.src = imageUrl;
+
+        mainImage.style.transform =
+            "scale(1)";
+
+        mainImage.style.transformOrigin =
+            "center center";
+
+    }
+
+}
+
+
+/* ================================= */
+/* Zoom + Pan */
+/* ================================= */
+
+const zoomContainer =
+    document.getElementById(
+        "zoom-container"
+    );
+
+
+const zoomImage =
+    document.getElementById(
+        "detail-main-image"
+    );
+
+
+if (zoomContainer && zoomImage) {
+
+
+    zoomContainer.addEventListener(
+        "mousemove",
+        function(event) {
+
+
+            const rect =
+                zoomContainer.getBoundingClientRect();
+
+
+            const x =
+                (
+                    (event.clientX - rect.left)
+                    /
+                    rect.width
+                ) * 100;
+
+
+            const y =
+                (
+                    (event.clientY - rect.top)
+                    /
+                    rect.height
+                ) * 100;
+
+
+            zoomImage.style.transformOrigin =
+                `${x}% ${y}%`;
+
+
+            zoomImage.style.transform =
+                "scale(2)";
+
+
+        }
+    );
+
+
+    zoomContainer.addEventListener(
+        "mouseleave",
+        function() {
+
+
+            zoomImage.style.transformOrigin =
+                "center center";
+
+
+            zoomImage.style.transform =
+                "scale(1)";
+
+
+        }
+    );
+
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,109 @@
+﻿{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}À propos - Python Freelance{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <span class="section-badge">À propos</span>
+        <h1>Des solutions Python claires, utiles et adaptées à vos besoins.</h1>
+        <p>
+            Python Freelance accompagne les entrepreneurs, indépendants et petites entreprises
+            dans la création d’outils web simples, efficaces et durables.
+        </p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container about-grid">
+        <div class="about-content">
+            <span class="section-badge">Qui sommes-nous ?</span>
+            <h2>Un accompagnement technique orienté résultats</h2>
+            <p>
+                Notre objectif est de transformer vos idées en applications concrètes :
+                sites web, automatisations, tableaux de bord, formulaires intelligents
+                ou outils internes pour gagner du temps au quotidien.
+            </p>
+            <p>
+                Nous privilégions une approche simple : comprendre votre besoin,
+                proposer une solution claire, développer proprement, puis vous livrer
+                un outil facile à utiliser et à faire évoluer.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>Notre approche</h3>
+            <ul>
+                <li>Analyse claire du besoin</li>
+                <li>Développement avec Python et Django</li>
+                <li>Interface moderne et responsive</li>
+                <li>Code propre et maintenable</li>
+                <li>Livraison progressive et transparente</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="container">
+        <span class="section-badge">Nos valeurs</span>
+        <h2>Une méthode simple, professionnelle et humaine</h2>
+
+        <div class="values-grid">
+            <article class="value-card">
+                <h3>Clarté</h3>
+                <p>
+                    Chaque projet commence par une compréhension précise de vos objectifs,
+                    sans jargon inutile.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <h3>Efficacité</h3>
+                <p>
+                    Nous construisons des solutions utiles, centrées sur vos priorités
+                    et vos vrais problèmes métier.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <h3>Fiabilité</h3>
+                <p>
+                    Le code est structuré pour rester stable, lisible et facilement améliorable.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="tech-section">
+    <div class="container">
+        <span class="section-badge">Technologies</span>
+        <h2>Des outils modernes pour des projets solides</h2>
+
+        <div class="tech-list">
+            <span>Python</span>
+            <span>Django</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>SQLite</span>
+            <span>Responsive Design</span>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Vous avez une idée de projet ?</h2>
+        <p>
+            Discutons de votre besoin et voyons comment créer une solution simple,
+            professionnelle et adaptée à votre activité.
+        </p>
+        <a href="{% url 'contact' %}" class="btn btn-primary">Nous contacter</a>
+    </div>
+</section>
+
+{% endblock %}

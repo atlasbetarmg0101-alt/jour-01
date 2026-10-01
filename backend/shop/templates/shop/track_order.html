@@ -1,0 +1,313 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>تتبع الطلب | متجرنا</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'shop/style.css' %}"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{% static 'images/favicon.png' %}"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="container header-content">
+
+        <h1>🛒 متجرنا</h1>
+
+        <a
+            href="{% url 'cart' %}"
+            class="cart-link"
+        >
+            🛍️ السلة
+
+            <span class="cart-count">
+                {{ cart_count }}
+            </span>
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="track-order">
+
+        <h2>
+            📦 تتبع طلبك
+        </h2>
+
+        <p>
+            أدخل رقم الطلب ورقم الهاتف لمعرفة حالة طلبك.
+        </p>
+
+
+        {% if error %}
+
+            <div class="checkout-error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        {% if not order %}
+
+            <form method="post">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label for="order_id">
+                        رقم الطلب
+                    </label>
+
+                    <input
+                        type="number"
+                        id="order_id"
+                        name="order_id"
+                        placeholder="مثال: 6"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        رقم الهاتف
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="مثال: 0660366360"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="checkout-submit"
+                >
+                    🔎 تتبع الطلب
+                </button>
+
+            </form>
+
+        {% endif %}
+
+
+        {% if order %}
+
+            <div class="order-result">
+
+                <div class="success-icon">
+                    📦
+                </div>
+
+
+                <h2>
+                    الطلب #{{ order.id }}
+                </h2>
+
+
+                <p>
+
+                    العميل:
+
+                    <strong>
+                        {{ order.customer_name }}
+                    </strong>
+
+                </p>
+
+
+                <!-- المنتجات -->
+
+                <div class="order-products">
+
+                    <h3>
+                        🛍️ المنتجات المطلوبة
+                    </h3>
+
+
+                    {% for item in order.items.all %}
+
+                        <div class="order-product">
+
+                            <div class="order-product-info">
+
+                                <strong>
+                                    {{ item.product.name }}
+                                </strong>
+
+                                <span>
+                                    الكمية:
+                                    {{ item.quantity }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="order-product-price">
+
+                                <span>
+                                    {{ item.price }} درهم
+                                </span>
+
+                                <strong>
+                                    {{ item.get_total }} درهم
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- المجموع -->
+
+                <div class="order-total">
+
+                    <span>
+                        المجموع الإجمالي
+                    </span>
+
+                    <strong>
+                        {{ order.total }} درهم
+                    </strong>
+
+                </div>
+
+
+                <!-- حالة الطلب -->
+
+                <div class="order-status">
+
+                    <span>
+                        حالة الطلب:
+                    </span>
+
+                    <strong>
+                        {{ order.get_status_display }}
+                    </strong>
+
+                </div>
+
+
+                <!-- مراحل الطلب -->
+
+                <div class="order-progress">
+
+
+                    <div class="progress-step
+                        {% if order.status == 'new' %}
+                            active
+                        {% elif order.status == 'processing' or order.status == 'shipped' or order.status == 'delivered' %}
+                            completed
+                        {% endif %}
+                    ">
+
+                        <span>1</span>
+
+                        <p>
+                            جديد
+                        </p>
+
+                    </div>
+
+
+                    <div class="progress-step
+                        {% if order.status == 'processing' %}
+                            active
+                        {% elif order.status == 'shipped' or order.status == 'delivered' %}
+                            completed
+                        {% endif %}
+                    ">
+
+                        <span>2</span>
+
+                        <p>
+                            قيد المعالجة
+                        </p>
+
+                    </div>
+
+
+                    <div class="progress-step
+                        {% if order.status == 'shipped' %}
+                            active
+                        {% elif order.status == 'delivered' %}
+                            completed
+                        {% endif %}
+                    ">
+
+                        <span>3</span>
+
+                        <p>
+                            تم الشحن
+                        </p>
+
+                    </div>
+
+
+                    <div class="progress-step
+                        {% if order.status == 'delivered' %}
+                            active
+                        {% endif %}
+                    ">
+
+                        <span>4</span>
+
+                        <p>
+                            تم التسليم
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

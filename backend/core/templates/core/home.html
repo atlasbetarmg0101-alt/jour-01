@@ -1,0 +1,225 @@
+﻿{% extends "core/base.html" %}
+
+{% block title %}Accueil - Python Freelance{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">🚀 Développement Python</span>
+
+        <h1>
+            Transformez vos idées
+            <span>en projets Python.</span>
+        </h1>
+
+        <p class="description">
+            Développement web, automatisation et solutions Python
+            adaptées à vos besoins.
+        </p>
+
+        <div class="buttons">
+
+            <a href="{% url 'services' %}" class="btn primary">
+                Découvrir les services
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn secondary">
+                Me contacter
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="services">
+
+    <h2>Nos services</h2>
+
+    <p>
+        Des solutions Python simples, modernes et efficaces.
+    </p>
+
+    <div class="cards">
+
+        <article class="card">
+
+            <div class="icon">🐍</div>
+
+            <h3>Développement Python</h3>
+
+            <p>
+                Création d'applications et de scripts Python
+                adaptés à vos besoins.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icon">🌐</div>
+
+            <h3>Développement Web</h3>
+
+            <p>
+                Création de sites et applications web modernes
+                avec Django.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="icon">⚙️</div>
+
+            <h3>Automatisation</h3>
+
+            <p>
+                Automatisez les tâches répétitives grâce à Python
+                et gagnez du temps.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="why-section">
+
+    <div class="section-header">
+
+        <span class="section-badge">⭐ Notre approche</span>
+
+        <h2>Pourquoi choisir Python Freelance ?</h2>
+
+        <p>
+            Nous créons des solutions fiables, modernes et adaptées
+            aux besoins de chaque projet.
+        </p>
+
+    </div>
+
+
+    <div class="why-cards">
+
+        <article class="why-card">
+
+            <div class="why-icon">💡</div>
+
+            <h3>Solutions sur mesure</h3>
+
+            <p>
+                Chaque projet est conçu selon vos besoins,
+                vos objectifs et votre budget.
+            </p>
+
+        </article>
+
+
+        <article class="why-card">
+
+            <div class="why-icon">⚡</div>
+
+            <h3>Performance</h3>
+
+            <p>
+                Des solutions optimisées pour offrir
+                rapidité, stabilité et efficacité.
+            </p>
+
+        </article>
+
+
+        <article class="why-card">
+
+            <div class="why-icon">🔧</div>
+
+            <h3>Technologies modernes</h3>
+
+            <p>
+                Python, Django et les technologies web modernes
+                pour construire des projets évolutifs.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="stats-section">
+
+    <div class="stats-container">
+
+        <div class="stat">
+
+            <strong>Python</strong>
+
+            <span>Technologie principale</span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>Django</strong>
+
+            <span>Framework Web</span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>100%</strong>
+
+            <span>Solutions personnalisées</span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>24/7</strong>
+
+            <span>Disponibilité en ligne</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="cta-section">
+
+    <div class="cta-content">
+
+        <span class="section-badge">🚀 Votre projet commence ici</span>
+
+        <h2>Un projet en tête ?</h2>
+
+        <p>
+            Parlons de votre idée et trouvons ensemble
+            la meilleure solution Python.
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn primary">
+            Démarrer un projet →
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
